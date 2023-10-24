@@ -132,12 +132,12 @@ export async function handler(chatUpdate) {
             if (typeof chat !== "object")
                 global.db.data.chats[m.chat] = {}
             if (chat) {
-                if (!("antiDelete" in chat)) chat.antiDelete = true
+                if (!("antiDelete" in chat)) chat.antiDelete = false
                 if (!("antiLink" in chat)) chat.antiLink = false
                 if (!("antiSticker" in chat)) chat.antiSticker = false
                 if (!("antiToxic" in chat)) chat.antiToxic = false
                 if (!("detect" in chat)) chat.detect = false
-                if (!("getmsg" in chat)) chat.getmsg = true
+                if (!("getmsg" in chat)) chat.getmsg = false
                 if (!("isBanned" in chat)) chat.isBanned = false
                 if (!("nsfw" in chat)) chat.nsfw = false
                 if (!("sBye" in chat)) chat.sBye = ""
@@ -152,7 +152,7 @@ export async function handler(chatUpdate) {
                 if (!isNumber(chat.expired)) chat.expired = 0
             } else
                 global.db.data.chats[m.chat] = {
-                    antiDelete: true,
+                    antiDelete: false,
                     antiLink: false,
                     antiSticker: false,
                     antiToxic: false,
@@ -177,14 +177,14 @@ export async function handler(chatUpdate) {
             let settings = global.db.data.settings[this.user.jid]
             if (typeof settings !== "object") global.db.data.settings[this.user.jid] = {}
             if (settings) {
-                if (!("self" in settings)) settings.self = false
+                if (!("self" in settings)) settings.self = true
                 if (!("autoread" in settings)) settings.autoread = false
                 if (!("restrict" in settings)) settings.restrict = false
                 if (!("restartDB" in settings)) settings.restartDB = 0
                 if (!("status" in settings)) settings.status = 0
 
             } else global.db.data.settings[this.user.jid] = {
-                self: false,
+                self: true,
                 autoread: false,
                 restrict: false,
                 restartDB: 0,
